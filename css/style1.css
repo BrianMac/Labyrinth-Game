@@ -1,0 +1,599 @@
+#LabyrinthMain {
+    border: 0px solid black;
+    border-collapse: collapse;
+    width: 900px;
+    height: 900px;
+    background-color: #1b014e;
+}
+
+img {
+    
+    object-fit: cover;
+  }
+
+.arrow {
+    opacity: .3;
+    transition: opacity .3s linear;
+}
+
+.arrow:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+
+#A-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#C-1 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowdown.png");
+    background-size: contain;
+}
+
+#D-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#E-1 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowdown.png");
+    background-size: contain;
+}
+
+#F-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#G-1 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowdown.png");
+    background-size: contain;
+}
+
+#H-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#I-1 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#A-2 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-2 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_reddot.png");
+    background-size: contain;
+}
+
+#C-2 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-2 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_skull.png");
+    background-size: contain;
+}
+
+#E-2 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-2 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_sword.png");
+    background-size: contain;
+}
+
+#G-2 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-2 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bluedot.png");
+    background-size: contain;
+}
+
+#I-2 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#A-3 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_bg_arrowright.png");
+    background-size: contain;
+}
+
+#B-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#C-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#E-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#G-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-3 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#I-3 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_bg_arrowleft.png");
+    background-size: contain;
+}
+
+#A-4 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-4 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_purse.png");
+    background-size: contain;
+}
+
+#C-4 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-4 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_keys.png");
+    background-size: contain;
+}
+
+#E-4 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-4 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_jewel.png");
+    background-size: contain;
+}
+
+#G-4 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-4 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_helmet.png");
+    background-size: contain;
+}
+
+#I-4 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#A-5 {
+width: 100px;
+height: 100px;
+
+    background-image: url("../img/tile_bg_arrowright.png");
+    background-size: contain;
+}
+
+#B-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#C-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#E-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#G-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-5 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#I-5 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowleft.png");
+    background-size: contain;
+}
+
+#A-6 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-6 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_book.png");
+    background-size: contain;
+}
+
+#C-6 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-6 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_crown.png");
+    background-size: contain;
+}
+
+#E-6 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-6 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_treasure.png");
+    background-size: contain;
+}
+
+#G-6 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-6 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_candles.png");
+    background-size: contain;
+}
+
+#I-6 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#A-7 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowright.png");
+    background-size: contain;
+}
+
+#B-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#C-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#E-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#G-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-7 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#I-7 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowleft.png");
+    background-size: contain;
+}
+
+#A-8 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-8 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_yellowdot.png");
+    background-size: contain;
+}
+
+#C-8 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#D-8 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_map.png");
+    background-size: contain;
+}
+
+#E-8 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#F-8 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_ring.png");
+    background-size: contain;
+}
+
+#G-8 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#H-8 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_greendot.png");
+    background-size: contain;
+}
+
+#I-8 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#A-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#B-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#C-9 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowup.png");
+    background-size: contain;
+}
+
+#D-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#E-9 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowup.png");
+    background-size: contain;
+}
+
+#F-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#G-9 {
+width: 100px;
+height: 100px;
+    background-image: url("../img/tile_bg_arrowup.png");
+    background-size: contain;
+}
+
+#H-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}
+
+#I-9 {
+width: 100px;
+height: 100px;
+    background-color: #210260;
+    background-size: contain;
+}

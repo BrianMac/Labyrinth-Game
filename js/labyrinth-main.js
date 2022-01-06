@@ -189,6 +189,7 @@ function randomizeOrientation(tileName) {
 }
 
 function createTileMap() {
+  document.getElementById("floating-panel").style.display = "none";
 //shuffle order of moveable tiles
 movingTiles = shuffle(movingTiles);
 console.log(movingTiles);

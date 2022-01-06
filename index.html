@@ -110,7 +110,7 @@
     </head>
     <body>
         <div id="page-bg">
-            <div>
+            <div id="main-container">
                 <table id="LabyrinthMain">
                     <tr>
                         <td id="A-1"></td>
@@ -213,11 +213,21 @@
                     </tr>
                 </table>                  
             </div>
+            <div id="sidebar">
+                <div id="placeholder"></div>
+            </div>
             <div id="floating-panel">
-                Welcome to Labyrinth!<br/>
+                <br/><br/>
+                Welcome to Labyrinth!<br/><br/>
+                Select players 2-4:<br/><br/>
+                <div id="sorceress-label"><input type="checkbox" class="player-selections" id="sorceress" name="sorceress-player" value="Sorceress"><label for="sorceress">Sorceress</label></div>
+                <div id="witch-label"><input type="checkbox" class="player-selections" id="witch" name="witch-player" value="Witch"><label for="witch">Witch</label></div>
+                <div id="warlock-label"><input type="checkbox" class="player-selections" id="warlock" name="warlock-player" value="Warlock"><label for="warlock">Warlock</label></div>
+                <div id="wizard-label"><input type="checkbox" class="player-selections" id="wizard" name="wizard-player" value="Wizard"><label for="witch">Wizard</label></div><br/>
                 <button id="StartButton">Start Game</button>
             </div>
         </div>
-        <script src="js/labyrinth.js"></script>
+        <script src="js/labyrinth-gamestart.js"></script>
+        <script src="js/labyrinth-main.js"></script>
     </body>
 </html>

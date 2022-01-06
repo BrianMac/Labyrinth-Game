@@ -95,7 +95,7 @@ const tiles = [
   {'row': 'I', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'}
 ];
 
-//add unique tile names for movable tiles
+//unique tile names for movable tiles
 var movingTiles = ['tile_troll', 'tile_lizard', 'tile_beetle', 'tile_spider', 'tile_rat', 'tile_moth', 'tile_princess', 'tile_genie', 'tile_ghost', 'tile_dragon', 'tile_bat', 'tile_owl'];
 
 //add non-unique tiles (10 corner & 12 straight tiles)
@@ -106,10 +106,6 @@ for (let i = 0; i < 10; i++) {
 for (let i = 0; i < 12; i++) {
   movingTiles.push('tile_straight');
 }
-
-//shuffle order of moveable tiles
-movingTiles = shuffle(movingTiles);
-console.log(movingTiles);
 
 function shuffle(array) {
   let currentIndex = array.length, randomIndex;
@@ -128,27 +124,6 @@ function shuffle(array) {
 
   return array;
 }
-
-// Set all tile locations & set non-moving tiles bg images
-for (let i = 0; i < tiles.length; i++) {
-  tiles[i].location = tiles[i].row + "-" + tiles[i].column;
-  if (tiles[i].image != "none" || tiles[i].image != "") {
-    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + tiles[i].image + ".png')";
-  }
-}
-
-// Set moving tiles bg images with randomized orientation
- counter = 0;
-for (let i = 0; i < tiles.length; i++) {
-  if (tiles[i].image == "") {
-
-    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + randomizeOrientation(movingTiles[counter]) + ".png')";
-    tiles[i].image = movingTiles[counter];
-    counter++;
-  }
-}
-
-console.log(tiles);
 
 //Randomize orientation of tiles and append the appropriate image filename onto
 function randomizeOrientation(tileName) {
@@ -214,5 +189,26 @@ function randomizeOrientation(tileName) {
 }
 
 function createTileMap() {
+//shuffle order of moveable tiles
+movingTiles = shuffle(movingTiles);
+console.log(movingTiles);
 
+// Set all tile locations & set non-moving tiles bg images
+for (let i = 0; i < tiles.length; i++) {
+  tiles[i].location = tiles[i].row + "-" + tiles[i].column;
+  if (tiles[i].image != "none" || tiles[i].image != "") {
+    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + tiles[i].image + ".png')";
+  }
+}
+
+// Set moving tiles bg images with randomized orientation
+ counter = 0;
+for (let i = 0; i < tiles.length; i++) {
+  if (tiles[i].image == "") {
+
+    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + randomizeOrientation(movingTiles[counter]) + ".png')";
+    tiles[i].image = movingTiles[counter];
+    counter++;
+  }
+}
 }

@@ -3,7 +3,7 @@ html, body {
   }
 
 #LabyrinthMain {
-    border: 1px solid black;
+    border: 0px solid black;
     border-collapse: collapse;
     width: 900px;
     height: 900px;
@@ -15,8 +15,8 @@ img {
   }
 
 .arrow {
-    opacity: .3;
-    transition: opacity .3s linear;
+    opacity: .7;
+    transition: opacity .7s linear;
 }
 
 .arrow:hover {
@@ -69,13 +69,25 @@ img {
     width: 940px;
     height: 940px;
     border: 1px solid black;
+    border-right: 1px dashed;
 }
 
 #sidebar {
+    display: flex;
+    flex-direction: column;
     width: 500px;
     height: 920px;
-    border: 1px solid black;
+    border: 0px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 10px;
+}
+
+#inventory {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
 }
 
 #A-1 {

@@ -115,11 +115,11 @@
                     <tr>
                         <td id="A-1"></td>
                         <td id="A-2"></td>
-                        <td id="A-3" class="arrow"></td>
+                        <td id="A-3" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="A-4"></td>
-                        <td id="A-5" class="arrow"></td>
+                        <td id="A-5" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="A-6"></td>
-                        <td id="A-7" class="arrow"></td>
+                        <td id="A-7" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="A-8"></td>
                         <td id="A-9"></td>
                     </tr>
@@ -135,7 +135,7 @@
                         <td id="B-9"></td>
                     </tr>
                     <tr>
-                        <td id="C-1" class="arrow"></td>
+                        <td id="C-1" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="C-2"></td>
                         <td id="C-3"></td>
                         <td id="C-4"></td>
@@ -143,7 +143,7 @@
                         <td id="C-6"></td>
                         <td id="C-7"></td>
                         <td id="C-8"></td>
-                        <td id="C-9" class="arrow"></td>
+                        <td id="C-9" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                     </tr>
                     <tr>
                         <td id="D-1"></td>
@@ -157,7 +157,7 @@
                         <td id="D-9"></td>
                     </tr>
                     <tr>
-                        <td id="E-1" class="arrow"></td>
+                        <td id="E-1" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="E-2"></td>
                         <td id="E-3"></td>
                         <td id="E-4"></td>
@@ -165,7 +165,7 @@
                         <td id="E-6"></td>
                         <td id="E-7"></td>
                         <td id="E-8"></td>
-                        <td id="E-9" class="arrow"></td>
+                        <td id="E-9" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                     </tr>
                     <tr>
                         <td id="F-1"></td>
@@ -179,7 +179,7 @@
                         <td id="F-9"></td>
                     </tr>
                     <tr>
-                        <td id="G-1" class="arrow"></td>
+                        <td id="G-1" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="G-2"></td>
                         <td id="G-3"></td>
                         <td id="G-4"></td>
@@ -187,7 +187,7 @@
                         <td id="G-6"></td>
                         <td id="G-7"></td>
                         <td id="G-8"></td>
-                        <td id="G-9" class="arrow"></td>
+                        <td id="G-9" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                     </tr>
                     <tr>
                         <td id="H-1"></td>
@@ -203,18 +203,23 @@
                     <tr>
                         <td id="I-1"></td>
                         <td id="I-2"></td>
-                        <td id="I-3" class="arrow"></td>
+                        <td id="I-3" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="I-4"></td>
-                        <td id="I-5" class="arrow"></td>
+                        <td id="I-5" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="I-6"></td>
-                        <td id="I-7" class="arrow"></td>
+                        <td id="I-7" class="arrow" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
                         <td id="I-8"></td>
                         <td id="I-9"></td>
                     </tr>
                 </table>                  
             </div>
             <div id="sidebar">
-                <div id="placeholder"></div>
+                <div id="sidebar1">PLAYER 1.</div>
+                <div id="sidebar2"><img id="inventory" src="img/none.png" draggable="true" ondragstart="drag(event)" /></div>
+                <div id="sidebar3"></div>
+                <div id="sidebar4">
+                    <button id="end-turn">Place Path Tile</button>
+                </div>
             </div>
             <div id="floating-panel">
                 <br/><br/>
@@ -223,7 +228,7 @@
                 <div id="sorceress-label"><input type="checkbox" class="player-selections" id="sorceress" name="sorceress-player" value="Sorceress"><label for="sorceress">Sorceress</label></div>
                 <div id="witch-label"><input type="checkbox" class="player-selections" id="witch" name="witch-player" value="Witch"><label for="witch">Witch</label></div>
                 <div id="warlock-label"><input type="checkbox" class="player-selections" id="warlock" name="warlock-player" value="Warlock"><label for="warlock">Warlock</label></div>
-                <div id="wizard-label"><input type="checkbox" class="player-selections" id="wizard" name="wizard-player" value="Wizard"><label for="witch">Wizard</label></div><br/>
+                <div id="wizard-label"><input type="checkbox" class="player-selections" id="wizard" name="wizard-player" value="Wizard"><label for="wizard">Wizard</label></div><br/>
                 <button id="StartButton">Start Game</button>
             </div>
         </div>

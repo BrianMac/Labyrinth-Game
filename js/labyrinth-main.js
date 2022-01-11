@@ -1,98 +1,102 @@
 document.getElementById("StartButton").addEventListener("click", function () {
   createTileMap();
+  beginPlay();
 });
+
+var firstTurn = true;
+var currentPlayer = "";
 
 //default state of tiles in grid
 const tiles = [
-  {'row': 'A', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '2', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '3', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '4', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '5', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '6', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '7', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '8', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'A', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'A', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '2', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '3', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '4', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '5', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '6', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '7', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowdown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '8', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'A', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'B', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_reddot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_skull', 'orientation': 1, 'checked': false, 'players': [], 'item': 'skull'},
-  {'row': 'B', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_sword', 'orientation': 1, 'checked': false, 'players': [], 'item': 'sword'},
-  {'row': 'B', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_bluedot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'B', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'B', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_reddot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_skull', 'orientation': 1, 'checked': false, 'players': [], 'item': 'skull' },
+  { 'row': 'B', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_sword', 'orientation': 1, 'checked': false, 'players': [], 'item': 'sword' },
+  { 'row': 'B', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_bluedot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'B', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'C', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'C', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'C', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'C', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'D', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'D', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_purse', 'orientation': 1, 'checked': false, 'players': [], 'item': 'purse'},
-  {'row': 'D', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'D', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_keys', 'orientation': 1, 'checked': false, 'players': [], 'item': 'keys'},
-  {'row': 'D', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'D', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_jewel', 'orientation': 1, 'checked': false, 'players': [], 'item': 'jewel'},
-  {'row': 'D', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'D', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_helmet', 'orientation': 1, 'checked': false, 'players': [], 'item': 'helmet'},
-  {'row': 'D', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'D', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'D', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_purse', 'orientation': 1, 'checked': false, 'players': [], 'item': 'purse' },
+  { 'row': 'D', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'D', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_keys', 'orientation': 1, 'checked': false, 'players': [], 'item': 'keys' },
+  { 'row': 'D', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'D', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_jewel', 'orientation': 1, 'checked': false, 'players': [], 'item': 'jewel' },
+  { 'row': 'D', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'D', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_helmet', 'orientation': 1, 'checked': false, 'players': [], 'item': 'helmet' },
+  { 'row': 'D', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'E', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'E', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'E', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'E', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'F', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'F', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_book', 'orientation': 1, 'checked': false, 'players': [], 'item': 'book'},
-  {'row': 'F', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'F', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_crown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'crown'},
-  {'row': 'F', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'F', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_treasure', 'orientation': 1, 'checked': false, 'players': [], 'item': 'treasure'},
-  {'row': 'F', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'F', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_candles', 'orientation': 1, 'checked': false, 'players': [], 'item': 'candles'},
-  {'row': 'F', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'F', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'F', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_book', 'orientation': 1, 'checked': false, 'players': [], 'item': 'book' },
+  { 'row': 'F', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'F', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_crown', 'orientation': 1, 'checked': false, 'players': [], 'item': 'crown' },
+  { 'row': 'F', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'F', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_treasure', 'orientation': 1, 'checked': false, 'players': [], 'item': 'treasure' },
+  { 'row': 'F', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'F', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_candles', 'orientation': 1, 'checked': false, 'players': [], 'item': 'candles' },
+  { 'row': 'F', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'G', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'G', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'G', 'column': '1', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowright', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '2', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '4', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '6', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '8', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'G', 'column': '9', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowleft', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'H', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_yellowdot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_map', 'orientation': 1, 'checked': false, 'players': [], 'item': 'map'},
-  {'row': 'H', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_ring', 'orientation': 1, 'checked': false, 'players': [], 'item': 'ring'},
-  {'row': 'H', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_greendot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'H', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
+  { 'row': 'H', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '2', 'moveable': false, 'location': false, 'image': 'tile_yellowdot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '3', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '4', 'moveable': false, 'location': false, 'image': 'tile_map', 'orientation': 1, 'checked': false, 'players': [], 'item': 'map' },
+  { 'row': 'H', 'column': '5', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '6', 'moveable': false, 'location': false, 'image': 'tile_ring', 'orientation': 1, 'checked': false, 'players': [], 'item': 'ring' },
+  { 'row': 'H', 'column': '7', 'moveable': true, 'location': false, 'image': '', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '8', 'moveable': false, 'location': false, 'image': 'tile_greendot', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'H', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
 
-  {'row': 'I', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '2', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '3', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '4', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '5', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '6', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '7', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '8', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'},
-  {'row': 'I', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none'}
+  { 'row': 'I', 'column': '1', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '2', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '3', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '4', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '5', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '6', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '7', 'moveable': false, 'location': false, 'image': 'tile_bg_arrowup', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '8', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' },
+  { 'row': 'I', 'column': '9', 'moveable': false, 'location': false, 'image': 'none', 'orientation': 1, 'checked': false, 'players': [], 'item': 'none' }
 ];
 
 //unique tile names for movable tiles
@@ -149,7 +153,7 @@ function randomizeOrientation(tileName) {
     }
   }
 
-   //For tile paths with two path directions
+  //For tile paths with two path directions
   if (tileName === "tile_owl" || tileName === "tile_lizard" || tileName === "tile_beetle" || tileName === "tile_spider" || tileName === "tile_rat" || tileName === "tile_moth" || tileName === "tile_corner") {
     switch (rndNum) {
       case 0:
@@ -167,7 +171,7 @@ function randomizeOrientation(tileName) {
     }
   }
 
-   //For the empty straight tiles with only two path directions
+  //For the empty straight tiles with only two path directions
   if (tileName === "tile_straight") {
     switch (rndNum) {
       case 0:
@@ -188,28 +192,99 @@ function randomizeOrientation(tileName) {
   return tileName;
 }
 
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+  console.log("The " + data + " was dropped on the " + ev.target.id + " tile.");
+}
+
 function createTileMap() {
-  document.getElementById("floating-panel").style.display = "none";
-//shuffle order of moveable tiles
-movingTiles = shuffle(movingTiles);
-console.log(movingTiles);
+  if (selectedPlayers.length >= 2) {
 
-// Set all tile locations & set non-moving tiles bg images
-for (let i = 0; i < tiles.length; i++) {
-  tiles[i].location = tiles[i].row + "-" + tiles[i].column;
-  if (tiles[i].image != "none" || tiles[i].image != "") {
-    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + tiles[i].image + ".png')";
+    document.getElementById("floating-panel").style.display = "none";
+    //shuffle order of moveable tiles
+    movingTiles = shuffle(movingTiles);
+    //console.log(movingTiles);
+
+    // Set all tile locations & set non-moving tiles bg images
+    for (let i = 0; i < tiles.length; i++) {
+      tiles[i].location = tiles[i].row + "-" + tiles[i].column;
+      if (tiles[i].image != "none" || tiles[i].image != "") {
+        document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + tiles[i].image + ".png')";
+      }
+    }
+
+    // Set moving tiles bg images with randomized orientation
+    counter = 0;
+    for (let i = 0; i < tiles.length; i++) {
+      if (tiles[i].image == "" && counter != 33) {
+
+        document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + randomizeOrientation(movingTiles[counter]) + ".png')";
+        tiles[i].image = movingTiles[counter];
+        counter++;
+      }
+      if (counter == 33) {
+        document.getElementById("inventory").src = "img/" + randomizeOrientation(movingTiles[counter]) + ".png";
+      }
+    }
   }
 }
 
-// Set moving tiles bg images with randomized orientation
- counter = 0;
-for (let i = 0; i < tiles.length; i++) {
-  if (tiles[i].image == "") {
+function doFirstTurn() {
 
-    document.getElementById(tiles[i].location).style.backgroundImage = "url('img/" + randomizeOrientation(movingTiles[counter]) + ".png')";
-    tiles[i].image = movingTiles[counter];
-    counter++;
+    // determine the first player to go
+    var randomPlayer = Math.floor(Math.random() * (selectedPlayers.length) + 1);
+    currentPlayer = selectedPlayers[randomPlayer - 1];
+    document.getElementById("sidebar1").innerHTML = currentPlayer;
+  // place players on board
+  for (let i = 0; i < selectedPlayers.length; i++) {
+    switch (selectedPlayers[i]) {
+      case "Sorceress":
+        document.getElementById("B-2").innerHTML = "<img id='sorceress-player' src='img/player_red.png' style='width:100px;height:100px;' />";
+        if (currentPlayer == selectedPlayers[i]) {
+          document.getElementById("B-2").innerHTML = "<img id='sorceress-player' src='img/player_red.png' draggable='true' ondragstart='drag(event)' style='width:100px;height:100px;' />";
+        }
+        break;
+
+      case "Witch":
+        document.getElementById("B-8").innerHTML = "<img id='witch-player' src='img/player_blue.png' style='width:100px;height:100px;' />";
+        if (currentPlayer == selectedPlayers[i]) {
+          document.getElementById("B-8").innerHTML = "<img id='witch-player' src='img/player_blue.png' draggable='true' ondragstart='drag(event)' style='width:100px;height:100px;' />";
+        }
+        break;
+
+      case "Warlock":
+        document.getElementById("H-8").innerHTML = "<img id='warlock-player' src='img/player_green.png' style='width:100px;height:100px;' />";
+        if (currentPlayer == selectedPlayers[i]) {
+          document.getElementById("H-2").innerHTML = "<img id='warlock-player' src='img/player_green.png' draggable='true' ondragstart='drag(event)' style='width:100px;height:100px;' />";
+        }
+        break;
+
+      case "Wizard":
+        document.getElementById("H-2").innerHTML = "<img id='wizard-player' src='img/player_yellow.png' style='width:100px;height:100px;' />";
+        if (currentPlayer == selectedPlayers[i]) {
+          document.getElementById("H-2").innerHTML = "<img id='wizard-player' src='img/player_yellow.png' draggable='true' ondragstart='drag(event)' style='width:100px;height:100px;' />";
+        }
+        break;
+
+      default:
+        break;
+    }
   }
-}
+  firstTurn = false;
+
+  //console.log(tiles);
+} 
+
+function beginPlay() {
+  doFirstTurn();
 }
